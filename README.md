@@ -115,7 +115,7 @@ This project builds on the earlier **Splunk and Log Source Lab**, where the **Sp
 For detailed UF installation steps, follow the instructions in the previous repository:
 
 **Reference:** ***Splunk and Log Source Lab → Universal Forwarder Installation Guide***
-(Add your GitHub repo link here)
+[Click here](https://github.com/edsonencinas/splunk-log-source-lab.git)
 
 ### 1️⃣ Install Splunk Universal Forwarder (Suricata VM)
 Follow the same installation steps from the earlier project to install and start the Splunk Universal Forwarder on the Suricata VM.
