@@ -1,10 +1,10 @@
 # 🎯 SURICATA TESTING DEMO
 Goal is to simulate:
-1️⃣ Recon scan
-2️⃣ SSH enumeration
-3️⃣ Brute-force attempt
-4️⃣ Suricata detection
-5️⃣ Splunk correlation timeline
+- Recon scan
+- SSH enumeration
+- Brute-force attempt
+- Suricata detection
+- Splunk correlation timeline
 
 This mirrors a **real SOC incident chain**.
 
@@ -160,6 +160,17 @@ index=suricata event_type=alert
 ```
 
 <img src="../screenshots/suricata_sc3.png" width="800">
+
+### 🟢 STEP 5  — Successful Credential Compromise (Hydra cracked password)
+Run Hydra attack from Attacker VM
+```bash
+hydra -l testuser -P passwords.txt ssh://<target-ip> -t 4 -V
+```
+<img src="../screenshots/suricata_sc8.png" width="800">
+
+Verify the login actually worked (**Target VM**)
+
+<img src="../screenshots/suricata_sc7.png" width="800">
 
 <img src="../screenshots/suricata_sc2.png" width="800">
 
