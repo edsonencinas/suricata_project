@@ -7,6 +7,50 @@ In this phase, Suricata is introduced as a **network-based Intrusion Detection S
 
 The goal of this guide is to document the **installation, configuration, and validation of Suricata** in the lab environment.
 
+## Suricata GCP Lab Architecture
+```code
+                    ┌──────────────────────┐
+                    │   Attacker VM        │
+                    │  (Kali / Ubuntu)     │
+                    │  - Hydra, Nmap, Ping │
+                    └─────────┬────────────┘
+                              │
+                              │  Test Traffic
+                              ▼
+                    ┌──────────────────────┐
+                    │     Target VM        │
+                    │  - SSH enabled       │
+                    │  - auth.log          │
+                    └─────────┬────────────┘
+                              │
+                              │ Mirrored / Routed Traffic
+                              ▼
+                    ┌──────────────────────┐
+                    │   Suricata Sensor    │
+                    │  Runs:               │
+                    │  -  IDS              │
+                    │  - eve.json output   │
+                    └─────────┬────────────┘
+                              │
+                              │ Logs forwarded
+                              ▼
+                    ┌──────────────────────┐
+                    │   Log Forwarder VM   │
+                    │  Splunk Universal    │
+                    │  Forwarder sends:    │
+                    │  - Suricata logs     │
+                    │  - auth.log          │
+                    └─────────┬────────────┘
+                              │
+                              │ Indexed events
+                              ▼
+                    ┌──────────────────────┐
+                    │     Splunk SIEM      │
+                    │  - Alerts dashboard  │
+                    │  - SPL searches      │
+                    │  - Correlation       │
+                    └──────────────────────┘
+```
 ## 🎯 Objectives
 - Install Suricata on a dedicated sensor VM
 - Configure Suricata for packet capture
@@ -127,7 +171,17 @@ sudo /opt/splunkforwarder/bin/splunk add monitor /var/log/suricata/eve.json -ind
 sudo /opt/splunkforwarder/bin/splunk add monitor /var/log/suricata/fast.log -index suricata -sourcetype suricata:alert
 ```
 
-🧠 How This Extends the Splunk Lab
+## ✅ Correct architecture for GCP Suricata testing
+**GCP Packet Mirroring**: Mirror traffic to Suricata VM.
+Steps:
+1. Go to VPC Network - Packet Mirroring
+2. Create mirror policy
+3. Source: Target VM or Subnet
+4. Collector: Suricata VM NIC
+5. Filter TCP port 22
+
+
+### 🧠 How This Extends the Splunk Lab
 The previous Splunk and Log Source Project focused on host-based logging.
 This expansions adds network-level detection, enabling:
 - Visibility into scanning and brute-force attacks
