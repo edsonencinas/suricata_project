@@ -172,6 +172,7 @@ Verify the login actually worked (**Target VM**)
 
 <img src="../screenshots/suricata_sc7.png" width="800">
 
+Splunk Event and Suricata  alerts
 <img src="../screenshots/suricata_sc2.png" width="800">
 
 <img src="../screenshots/suricata_sc1.png" width="800">
