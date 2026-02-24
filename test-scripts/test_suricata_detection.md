@@ -56,9 +56,9 @@ Set weak password like:
 ```bash
 123456
 ```
-***Note: For testing purpose, I opened the SSH port of TARGET VM with the allow rule set to my laptops' IP address.***
-***After the test I disable password auth again***
-To disable password auth:
+**Note:** For testing purposes, the SSH port on the target VM was temporarily opened with an allow rule restricted to my laptop’s IP address. After completing the tests, password authentication was disabled again.
+To disable password authentication:
+
 ```yaml
 PasswordAuthentication no
 ```
