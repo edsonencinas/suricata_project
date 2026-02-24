@@ -148,7 +148,7 @@ Automated password attack.
 
 <img src="../screenshots/suricata_sc6.png" width="800">
 
-🟢 STEP 4 — Verify detections in Splunk
+### 🟢 STEP 4 — Verify detections in Splunk
 Search:
 ```spl
 index=suricata event_type=alert
