@@ -159,6 +159,10 @@ index=suricata event_type=alert
 | table _time src_ip dest_ip alert.signature
 ```
 
+<img src="../screenshots/suricata_sc3.png" width="800">
 
+<img src="../screenshots/suricata_sc2.png" width="800">
+
+<img src="../screenshots/suricata_sc1.png" width="800">
 
 
