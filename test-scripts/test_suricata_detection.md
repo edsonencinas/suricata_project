@@ -1,3 +1,23 @@
+# 🎯 SURICATA TESTING DEMO
+Goal is to simulate:
+1️⃣ Recon scan
+2️⃣ SSH enumeration
+3️⃣ Brute-force attempt
+4️⃣ Suricata detection
+5️⃣ Splunk correlation timeline
+
+This mirrors a **real SOC incident chain**.
+
+## 🧭 LAB ROLES
+```
+| VM            | Role                                 |
+| ------------- | ------------------------------------ |
+| Attacker VM   | runs scans + brute force (My laptop) |
+| Target VM     | SSH server (utilize log-source-vm)   |
+| Suricata VM   | IDS sensor (the newly setup vm)      |
+| Splunk server | logging + dashboard (splunk-server)  |
+```
+
 ## ✅ 1. First — verify Suricata is actually inspecting traffic
 On the **Suricata VM**, run:
 ```bash
