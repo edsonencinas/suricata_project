@@ -132,7 +132,7 @@ Expected Suricata alerts
 
 <img src="../screenshots/suricata_sc4.png" width="800">
 
-###🟢 STEP 3 — Brute-Force Simulation
+### 🟢 STEP 3 — Brute-Force Simulation
 From attacker VM:
 ```bash
 hydra -l testuser -P password.txt ssh://TARGET_VM_IP -t 4
