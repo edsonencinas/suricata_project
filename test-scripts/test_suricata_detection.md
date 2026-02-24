@@ -18,7 +18,7 @@ This mirrors a **real SOC incident chain**.
 | Splunk server | logging + dashboard (splunk-server)  |
 ```
 
-## ✅ 1. First — verify Suricata is actually inspecting traffic
+## ✅ First — verify Suricata is actually inspecting traffic
 On the **Suricata VM**, run:
 ```bash
 sudo suricata -T -c /etc/suricata/suricata.yaml -v
@@ -36,7 +36,7 @@ And confirm alerts file updates:
 ```bash
 sudo tail -f /var/log/suricata/fast.log
 ```
-## ✅ 2. Make sure Suricata HAS brute-force detection rules
+## ✅ Make sure Suricata HAS brute-force detection rules
 SSH brute force alerts come from:
 - ET Open ruleset
 - Usually rule name like:
@@ -55,8 +55,8 @@ sudo suricata-update
 sudo systemctl restart suricata
 ```
 
-## ✅ 4. Enable password auth TEMPORARILY (Lab-safe method)
-On Suricata target VM, Edit SSH config:
+## ✅ Enable password auth TEMPORARILY (Lab-safe method)
+On target VM (log-source-vm), Edit SSH config:
 ```bash
 sudo nano /etc/ssh/sshd_config
 ```
@@ -85,8 +85,7 @@ PasswordAuthentication no
 Restart SSH.
 This keeps your VM secure.
 
-## ✅ 3. Create the attack simulation VM
-Use **another VM in same subnet** (NOT Suricata VM).
+## ✅ Install the necessary tools for attack simulation (Attacker VM)
 Install attack tool:
 ```bash
 sudo apt update
@@ -94,15 +93,67 @@ sudo apt install hydra -y
 ```
 Hydra is safe for lab brute-force testing.
 
-## ✅ 4. Perform SSH brute-force test (LAB ONLY)
-From attacker VM:
-```bash
-hydra -l testuser -P password.txt ssh://TARGET_VM_IP
-```
 Install **crunch** for the password list you can also install **wordlist** :
 ```bash
 sudo apt install crunch
 ```
+
+## ✅ Perform SSH brute-force test (LAB ONLY)
+
+### 🟢 STEP 1 — Reconnaissance (Stage 1 Attack)
+From attacker VM:
+```bash
+nmap -sS TARGET_IP
+```
+**What this simulates**
+Attacker discovering open ports.
+
+**Expected Suricata alerts**
+- ET SCAN Nmap detected
+- ET SCAN Potential Scan
+- SYN scan alerts
+
+### 🟢 STEP 2 — SSH Service Enumeration
+From attacker VM:
+```bash
+nmap -p 22 -sV TARGET_IP
+```
+**What this simulates?**
+Attacker checking:
+- SSH version
+- service details
+- potential vulnerabilities
+Expected Suricata alerts
+- SSH banner observed
+- suspicious SSH probing
+- version string alerts
+
+###🟢 STEP 3 — Brute-Force Simulation
+From attacker VM:
+```bash
+hydra -l testuser -P password.txt ssh://TARGET_VM_IP -t 4
+```
+**What this simulates?**
+Automated password attack.
+
+**Expected Suricata alerts**
+1. SSH scan behavior
+2. repeated connections
+3. brute-force heuristics
+4. connection threshold alerts
+
+🟢 STEP 4 — Verify detections in Splunk
+Search:
+```spl
+index=suricata event_type=alert
+```
+Then timeline view:
+```spl
+index=suricata event_type=alert
+| table _time src_ip dest_ip alert.signature
+```
+
+
 For faster test:
 ```bash
 hydra -l root -P password.txt -t 4 ssh://TARGET_VM_IP
