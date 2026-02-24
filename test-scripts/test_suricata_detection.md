@@ -113,6 +113,8 @@ Attacker discovering open ports.
 - ET SCAN Potential Scan
 - SYN scan alerts
 
+<img src="screenshots/suricata_sc5.png" width="800">
+
 ### 🟢 STEP 2 — SSH Service Enumeration
 From attacker VM:
 ```bash
@@ -128,6 +130,8 @@ Expected Suricata alerts
 - suspicious SSH probing
 - version string alerts
 
+<img src="screenshots/suricata_sc4.png" width="800">
+
 ###🟢 STEP 3 — Brute-Force Simulation
 From attacker VM:
 ```bash
@@ -142,6 +146,8 @@ Automated password attack.
 3. brute-force heuristics
 4. connection threshold alerts
 
+<img src="screenshots/suricata_sc6.png" width="800">
+
 🟢 STEP 4 — Verify detections in Splunk
 Search:
 ```spl
@@ -154,7 +160,5 @@ index=suricata event_type=alert
 ```
 
 
-For faster test:
-```bash
-hydra -l root -P password.txt -t 4 ssh://TARGET_VM_IP
-```
+
+
