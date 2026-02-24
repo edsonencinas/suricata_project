@@ -171,7 +171,7 @@ sudo /opt/splunkforwarder/bin/splunk add monitor /var/log/suricata/eve.json -ind
 sudo /opt/splunkforwarder/bin/splunk add monitor /var/log/suricata/fast.log -index suricata -sourcetype suricata:alert
 ```
 
-### 🧠 How This Extends the Splunk Lab
+## 🧠 How This Extends the Splunk Lab
 The previous Splunk and Log Source Project focused on host-based logging.
 This expansions adds network-level detection, enabling:
 - Visibility into scanning and brute-force attacks
