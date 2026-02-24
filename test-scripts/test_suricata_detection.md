@@ -114,7 +114,7 @@ Attacker discovering open ports.
 - SYN scan alerts
 
 <img src="../screenshots/suricata_sc5.png" width="800">
-screenshots/suricata_sc4.png
+
 ### 🟢 STEP 2 — SSH Service Enumeration
 From attacker VM:
 ```bash
