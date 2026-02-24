@@ -171,16 +171,6 @@ sudo /opt/splunkforwarder/bin/splunk add monitor /var/log/suricata/eve.json -ind
 sudo /opt/splunkforwarder/bin/splunk add monitor /var/log/suricata/fast.log -index suricata -sourcetype suricata:alert
 ```
 
-## ✅ Correct architecture for GCP Suricata testing
-**GCP Packet Mirroring**: Mirror traffic to Suricata VM.
-Steps:
-1. Go to VPC Network - Packet Mirroring
-2. Create mirror policy
-3. Source: Target VM or Subnet
-4. Collector: Suricata VM NIC
-5. Filter TCP port 22
-
-
 ### 🧠 How This Extends the Splunk Lab
 The previous Splunk and Log Source Project focused on host-based logging.
 This expansions adds network-level detection, enabling:
