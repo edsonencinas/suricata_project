@@ -7,6 +7,8 @@ In this phase, Suricata is introduced as a **network-based Intrusion Detection S
 
 The goal of this guide is to document the **installation, configuration, and validation of Suricata** in the lab environment.
 
+<img src="screenshots/suricata_sc3.png" width="800">
+
 ## Suricata GCP Lab Architecture
 ```code
                     ┌──────────────────────┐
