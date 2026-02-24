@@ -93,10 +93,12 @@ sudo apt install hydra -y
 ```
 Hydra is safe for lab brute-force testing.
 
-Install **crunch** for the password list you can also install **wordlist** :
+Install **crunch** for the password list but you can also install **wordlist** :
 ```bash
 sudo apt install crunch
+crunch 6 6 0123456789 -o password.txt
 ```
+
 
 ## ✅ Perform SSH brute-force test (LAB ONLY)
 
